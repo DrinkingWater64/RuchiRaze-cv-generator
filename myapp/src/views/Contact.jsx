@@ -65,7 +65,7 @@ const Contact = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <Box display={'flex'} alignItems='center' flexDirection={'column'} marginRight='220px' marginTop={'1px'}>
+            <Box display={'flex'} alignItems='center' flexDirection={'column'} marginRight='0px' marginTop={'1px'}>
                 <TextField
                     label='Name'
                     required

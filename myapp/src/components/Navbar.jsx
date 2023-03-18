@@ -13,16 +13,7 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 const Navbar = () => {
-    return (
-        <AppBar position='sticky'>
-            <StyledToolbar>
-                <SummarizeIcon sx={{ paddingRight: '5px' }} />
-                <Typography variant='3' color='white'>
-                    Razeme
-                </Typography>
-            </StyledToolbar>
-        </AppBar>
-    )
+    return <></>
 }
 
 export default Navbar

@@ -31,7 +31,7 @@ const Sidebar = () => {
         <Box bgcolor={blue} flex={1} p={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton component={Link} to={'/home'}>
+                    <ListItemButton component={Link} to={'/'}>
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
