@@ -54,7 +54,7 @@ function LoginComponent() {
     }
 
     return (
-        <Box display='flex' marginRight={'200px'} flexDirection={'column'} justifyContent='center' alignItems='center' height='100vh'>
+        <Box display='flex' flexDirection={'column'} justifyContent='center' alignItems='center' height='90vh'>
             <form onSubmit={handleSubmit}>
                 <Box display='flex' flexDirection='column' alignItems='center'>
                     <Typography variant='h4' gutterBottom>
