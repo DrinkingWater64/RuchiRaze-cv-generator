@@ -1,0 +1,28 @@
+{
+  "name": "ruchiraze-cv-generator",
+  "version": "1.0.0",
+  "description": "A cv generator. Creating for application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrinkingWater64/RuchiRaze-cv-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrinkingWater64/RuchiRaze-cv-generator/issues"
+  },
+  "homepage": "https://github.com/DrinkingWater64/RuchiRaze-cv-generator#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2"
+  }
+}
