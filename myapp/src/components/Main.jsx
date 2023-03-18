@@ -4,18 +4,13 @@ import { useState } from 'react'
 import { TextField, Button } from '@mui/material'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 
-import Contact from '../views/contact'
+import Contact from '../views/Contact'
 import Education from '../views/Education'
 
-const Main = () => {
+const Main = ({ route }) => {
     return (
         <Box flex={4} p={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/contact' component={<Contact />} />
-                    <Route path='/education' component={<Education />} />
-                </Routes>
-            </BrowserRouter>
+            {route}
         </Box>
     )
 }

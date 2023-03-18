@@ -4,21 +4,25 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
 
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import Rightbar from './components/Rightbar'
 import Main from './components/Main'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import DefaultHome from './DefaultHome'
+
+import Contact from './views/Contact'
+import Education from './views/Education'
+import Experience from './views/Experienc'
+import Skill from './views/Skill'
 
 function App() {
     return (
-        <Box>
-            <Navbar />
-            <Stack direction={'row'} spacing={2} justifyContent='space-between'>
-                <Sidebar />
-                <Main />
-                <Rightbar />
-            </Stack>
-        </Box>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/contact' element={<DefaultHome route={<Contact />} />} />
+                <Route path='/education' element={<DefaultHome route={<Education />} />} />
+                <Route path='/experience' element={<DefaultHome route={<Experience />} />} />
+                <Route path='/skill' element={<DefaultHome route={<Skill />} />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 

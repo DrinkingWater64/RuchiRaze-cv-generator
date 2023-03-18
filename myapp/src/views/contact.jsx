@@ -1,9 +1,11 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TextField, Button } from '@mui/material'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom'
 
-const contact = () => {
+const Contact = () => {
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
@@ -13,22 +15,27 @@ const contact = () => {
 
     const handleNameChange = (event) => {
         setName(event.target.value)
+        localStorage.setItem('name', JSON.stringify(name))
     }
 
     const handlePhoneChange = (event) => {
         setPhone(event.target.value)
+        localStorage.setItem('phone', JSON.stringify(phone))
     }
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
+        localStorage.setItem('email', JSON.stringify(email))
     }
 
     const handleCityChange = (event) => {
         setCity(event.target.value)
+        localStorage.setItem('city', JSON.stringify(city))
     }
 
     const handleAddressChange = (event) => {
         setAddress(event.target.value)
+        localStorage.setItem('address', JSON.stringify(address))
     }
 
     const handleSocialMediaLinkChange = (event, index) => {
@@ -39,18 +46,21 @@ const contact = () => {
 
     const handleAddSocialMediaLink = () => {
         setSocialMediaLinks([...socialMediaLinks, ''])
+        localStorage.setItem('socialMediaLinks', JSON.stringify(socialMediaLinks))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log({
+        const userData = {
             name,
             phone,
             email,
             city,
             address,
             socialMediaLinks,
-        })
+        }
+        console.log(userData)
+        navigate('/education')
         // Send the data to the server
     }
     return (
@@ -127,10 +137,10 @@ const contact = () => {
                 </Button>
             </Box>
             <Button type='submit' variant='contained' color='primary' sx={{ margin: '40px' }}>
-                Submit
+                Next
             </Button>
         </form>
     )
 }
 
-export default contact
+export default Contact
