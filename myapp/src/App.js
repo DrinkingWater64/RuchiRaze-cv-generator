@@ -12,6 +12,7 @@ import Contact from './views/Contact'
 import Education from './views/Education'
 import Experience from './views/Experienc'
 import Skill from './views/Skill'
+import LoginComponent from './views/Login'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/education' element={<DefaultHome route={<Education />} />} />
                 <Route path='/experience' element={<DefaultHome route={<Experience />} />} />
                 <Route path='/skill' element={<DefaultHome route={<Skill />} />} />
+                <Route path='/login' element={<LoginComponent />} />
             </Routes>
         </BrowserRouter>
     )
