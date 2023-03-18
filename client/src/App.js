@@ -5,8 +5,8 @@ import Cv_1 from './components/cvs/cv1';
 function App() {
   return (
     <div>
-      <h1>hello</h1>
       <Cv_1></Cv_1>
+      <h1>App</h1>
     </div>
   );
 }
