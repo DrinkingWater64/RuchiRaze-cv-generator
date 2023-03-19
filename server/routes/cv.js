@@ -1,22 +1,23 @@
-const express = require("express");
-const { auth } = require("../middlewares/auth");
+const express = require('express')
+const { auth } = require('../middlewares/auth')
 
-const CV = require("../models/cv");
+const CV = require('../models/cv')
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/", auth, async (req, res) => {
-  const { cvData } = req.body;
-  const cv = await CV.create({
-    ...cvData,
-  });
-  res.json(cv);
-});
+router.post('/', async (req, res) => {
+    const cvData = req.body
+    console.log(cvData)
+    const cv = await CV.create({
+        ...cvData,
+    })
+    res.json(cv)
+})
 
-router.get("/", auth, async (req, res) => {
-  const { email } = req.query;
-  const cv = await CV.findOne({ email });
-  res.json({ message: "ok", cv });
-});
+router.get('/', auth, async (req, res) => {
+    const { email } = req.query
+    const cv = await CV.findOne({ email })
+    res.json({ message: 'ok', cv })
+})
 
-module.exports = router;
+module.exports = router

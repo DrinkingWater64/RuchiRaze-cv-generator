@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import Box from '@mui/material/Box'
 import { useState } from 'react'
 import { TextField, Button } from '@mui/material'
@@ -20,11 +21,60 @@ const Skill = () => {
         localStorage.setItem('skills', JSON.stringify(Skills))
     }
 
+    async function sendData(email, password) {
+        try {
+            const name = localStorage.getItem('name')
+            const email = localStorage.getItem('email')
+            const mobileNumber = localStorage.getItem('phone')
+            const city = localStorage.getItem('city')
+            const address = localStorage.getItem('address')
+            const socialMediaLinks = JSON.parse(localStorage.getItem('socialMediaLinks'))
+            const educations = JSON.parse(localStorage.getItem('educations'))
+            const experiences = JSON.parse(localStorage.getItem('experiences'))
+            const skills = Skills
+
+            console.log()
+            const response = await axios.post('/api/cv', {
+                name,
+                email,
+                mobileNumber,
+                city,
+                address,
+                socialMediaLinks,
+                educations,
+                experiences,
+                skills,
+            })
+            navigate('/cv')
+        } catch (error) {
+            throw error.response.data
+        }
+    }
+
+    // const handleLogin = async (email, password) => {
+    //     try {
+    //         const userData = await loginUser(email, password)
+    //         if (userData.data.message === 'ok') {
+    //             localStorage.setItem('accessToken', userData.headers.getAuthorization())
+    //             console.log('Login successful:', userData.headers.getAuthorization())
+    //             navigate('/contact')
+    //         } else {
+    //             console.error('Login failed:', userData.data.message)
+    //             setError('No user with those credentials exist')
+    //         }
+    //     } catch (error) {
+    //         console.error('Login failed:', error)
+    //         setError(error.message)
+    //     }
+    // }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log({
             Skills,
         })
+        sendData()
+
         // Send the data to the server
     }
     return (

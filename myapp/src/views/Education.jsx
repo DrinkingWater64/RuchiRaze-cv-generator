@@ -48,6 +48,7 @@ const Education = () => {
             gradYear,
         }
         setEducations([...educations, education])
+        localStorage.setItem('educations', JSON.stringify(educations))
         setSchool('')
         setDegree('')
         setJoinYear('')

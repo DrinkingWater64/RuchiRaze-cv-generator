@@ -10,8 +10,8 @@ const Experience = () => {
     const [company, setCompany] = useState('')
     const [joinYear, setJoinYear] = useState('')
     const [leaveYear, setLeaveYear] = useState('')
-    const [desc, setDesc] = useState('')
-    const [experiences, setExperiences] = useState([])
+    const [description, setDesc] = useState('')
+    const [experiences, setExperiences] = useState(JSON.parse(localStorage.getItem('experiences')))
 
     const handleJobTitleChange = (event) => {
         setJobTitle(event.target.value)
@@ -35,7 +35,7 @@ const Experience = () => {
 
     const handleDescChange = (event) => {
         setDesc(event.target.value)
-        localStorage.setItem('desc', JSON.stringify(desc))
+        localStorage.setItem('description', JSON.stringify(description))
     }
 
     const addExp = (e) => {
@@ -46,9 +46,10 @@ const Experience = () => {
             company,
             joinYear,
             leaveYear,
-            desc,
+            description: description,
         }
         setExperiences([...experiences, experience])
+        localStorage.setItem('experiences', JSON.stringify(experiences))
         setJobTitle('')
         setCompany('')
         setJoinYear('')
@@ -63,10 +64,12 @@ const Experience = () => {
         //     company,
         //     joinYear,
         //     leaveYear,
-        //     desc,
+        //     description,
         // }
         // setExperiences([...experiences, experience])
         console.log(experiences)
+        localStorage.setItem('experiences', JSON.stringify(experiences))
+
         navigate('/skill')
         // setExperiences([...experiences, experience])
         // setJobTitle('')
@@ -113,7 +116,7 @@ const Experience = () => {
                         type='text'
                         autoComplete='text'
                         autoFocus
-                        value={desc}
+                        value={description}
                         onChange={handleDescChange}
                     />
                     <TextField
@@ -159,7 +162,7 @@ const Experience = () => {
                             <p>Company: {exp.company}</p>
                             <p>Join Year: {exp.joinYear}</p>
                             <p>Leave Year: {exp.leaveYear}</p>
-                            <p>Description: {exp.desc}</p>
+                            <p>Description: {exp.description}</p>
                         </li>
                     ))}
                 </ul>

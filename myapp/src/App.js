@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import Home from './Home'
 // import About from './About';
 import Templates from './components/Templates'
@@ -17,8 +17,18 @@ import Education from './views/Education'
 import Experience from './views/Experienc'
 import Skill from './views/Skill'
 import LoginComponent from './views/Login'
+import CV from './components/cvs/CV'
+
+const AuthWrapper = ({ isAuthenticated }) => {
+    return isAuthenticated ? <Navigate to='/contact' replace /> : <Navigate to='/login' replace />
+}
 
 function App() {
+    let isAuthenticated = localStorage.getItem('accessToken') === null ? false : true
+    let hidden = ''
+    if (isAuthenticated) {
+        hidden = 'none'
+    }
     return (
         <BrowserRouter>
             <nav>
@@ -44,7 +54,11 @@ function App() {
                             </Link>
                         </li>
                     </ul>
-                    <button className='login-btn'>Login</button>
+                    <button style={{ display: { hidden } }} className='login-btn'>
+                        <Link Link to='/login'>
+                            Login
+                        </Link>
+                    </button>
                 </div>
             </nav>
 
@@ -57,6 +71,8 @@ function App() {
                 <Route path='/experience' element={<DefaultHome route={<Experience />} />} />
                 <Route path='/skill' element={<DefaultHome route={<Skill />} />} />
                 <Route path='/login' element={<LoginComponent />} />
+                <Route path='/cv' element={<CV />} />
+                <Route path='/' element={<AuthWrapper isAuthenticated={isAuthenticated} />} />
             </Routes>
 
             <Footer />
