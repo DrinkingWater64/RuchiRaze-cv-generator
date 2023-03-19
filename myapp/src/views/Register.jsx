@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { TextField, Button, Typography, Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-function LoginComponent() {
+function Register() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -114,4 +114,4 @@ function LoginComponent() {
     )
 }
 
-export default LoginComponent
+export default Register

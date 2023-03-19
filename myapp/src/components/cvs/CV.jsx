@@ -5,20 +5,38 @@ import { PDFExport } from '@progress/kendo-react-pdf'
 import { Button } from '@mui/material'
 
 import './cv1.css'
+function parseJwt(token) {
+    var base64Url = token.split('.')[1]
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    var jsonPayload = decodeURIComponent(
+        window
+            .atob(base64)
+            .split('')
+            .map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            })
+            .join('')
+    )
+
+    return JSON.parse(jsonPayload)
+}
 
 function CV() {
-    const [name, setName] = useState(JSON.parse(localStorage.getItem('name')))
-    const [phone, setPhone] = useState(JSON.parse(localStorage.getItem('phone')))
-    const [email, setEmail] = useState(JSON.parse(localStorage.getItem('email')))
-    const [city, setCity] = useState(JSON.parse(localStorage.getItem('city')))
-    const [address, setAddress] = useState(JSON.parse(localStorage.getItem('address')))
-    const [socialMediaLinks, setSocialMediaLinks] = useState(JSON.parse(localStorage.getItem('socialMediaLinks')))
-    const [educations, setEducations] = useState(JSON.parse(localStorage.getItem('educations')))
-    const [experiences, setExperiences] = useState(JSON.parse(localStorage.getItem('experiences')))
-    const [Skills, setSkills] = useState(JSON.parse(localStorage.getItem('skills')))
+    const [name, setName] = useState(JSON.parse(localStorage.getItem('name')) || [])
+    const [phone, setPhone] = useState(JSON.parse(localStorage.getItem('phone')) || [])
+    const [email, setEmail] = useState(JSON.parse(localStorage.getItem('email')) || [])
+    const [city, setCity] = useState(JSON.parse(localStorage.getItem('city')) || [])
+    const [address, setAddress] = useState(JSON.parse(localStorage.getItem('address')) || [])
+    const [socialMediaLinks, setSocialMediaLinks] = useState(JSON.parse(localStorage.getItem('socialMediaLinks')) || [])
+    const [educations, setEducations] = useState(JSON.parse(localStorage.getItem('educations')) || [])
+    const [experiences, setExperiences] = useState(JSON.parse(localStorage.getItem('experiences')) || [])
+    const [Skills, setSkills] = useState(JSON.parse(localStorage.getItem('skills')) || [])
 
     useEffect(() => {
-        // const token = localStorage.getItem("accessToken").split('.')
+        try {
+            const { email } = parseJwt(localStorage.getItem('accessToken'))
+        } catch {}
+        console.log(email)
     }, [])
 
     let pdfExportComponent
@@ -29,6 +47,9 @@ function CV() {
 
     return (
         <div>
+            <Button sx={{ float: 'right' }} onClick={handleExport} variant='contained'>
+                Export
+            </Button>
             <PDFExport fileName='CV.pdf' paperSize='A4' scale={0.75} ref={(component) => (pdfExportComponent = component)}>
                 <div className='parent'>
                     <div className='childleft'>
@@ -89,9 +110,6 @@ function CV() {
                     </div>
                 </div>
             </PDFExport>
-            <Button onClick={handleExport} variant='contained'>
-                Export
-            </Button>
         </div>
     )
 }

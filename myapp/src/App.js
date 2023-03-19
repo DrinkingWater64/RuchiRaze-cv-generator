@@ -17,6 +17,7 @@ import Education from './views/Education'
 import Experience from './views/Experienc'
 import Skill from './views/Skill'
 import LoginComponent from './views/Login'
+import Register from './views/Register'
 import CV from './components/cvs/CV'
 
 const AuthWrapper = ({ isAuthenticated }) => {
@@ -54,11 +55,18 @@ function App() {
                             </Link>
                         </li>
                     </ul>
-                    <button style={{ display: { hidden } }} className='login-btn'>
-                        <Link Link to='/login'>
+
+                    <Link Link to='/login'>
+                        <button style={{ display: { hidden } }} className='login-btn'>
                             Login
-                        </Link>
-                    </button>
+                        </button>
+                    </Link>
+
+                    <Link Link to='/register'>
+                        <button style={{ display: { hidden } }} className='login-btn'>
+                            Register
+                        </button>
+                    </Link>
                 </div>
             </nav>
 
@@ -71,6 +79,7 @@ function App() {
                 <Route path='/experience' element={<DefaultHome route={<Experience />} />} />
                 <Route path='/skill' element={<DefaultHome route={<Skill />} />} />
                 <Route path='/login' element={<LoginComponent />} />
+                <Route path='/register' element={<Register />} />
                 <Route path='/cv' element={<CV />} />
                 <Route path='/' element={<AuthWrapper isAuthenticated={isAuthenticated} />} />
             </Routes>

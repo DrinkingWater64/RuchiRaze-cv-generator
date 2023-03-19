@@ -11,7 +11,7 @@ const Experience = () => {
     const [joinYear, setJoinYear] = useState('')
     const [leaveYear, setLeaveYear] = useState('')
     const [description, setDesc] = useState('')
-    const [experiences, setExperiences] = useState(JSON.parse(localStorage.getItem('experiences')))
+    const [experiences, setExperiences] = useState(JSON.parse(localStorage.getItem('experiences')) || [])
 
     const handleJobTitleChange = (event) => {
         setJobTitle(event.target.value)
