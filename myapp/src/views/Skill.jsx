@@ -70,6 +70,7 @@ const Skill = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        localStorage.setItem('skills', JSON.stringify(Skills))
         console.log({
             Skills,
         })

@@ -58,7 +58,7 @@ const Education = () => {
 
     const handleEducationSubmit = (event) => {
         event.preventDefault()
-
+        localStorage.setItem('educations', JSON.stringify(educations))
         console.log(educations)
         navigate('/experience')
     }
